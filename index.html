@@ -1,120 +1,288 @@
-<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<meta name='description' content='Wärmepumpe Förder-Check – kompakt erklärt mit Rechner, Checkliste und konkreten nächsten Schritten.'>
-<title>Wärmepumpe Förder-Check – Rechner & Ratgeber</title>
-<link rel='canonical' href='https://waermepumpe-foerder-check.vercel.app'>
-<style>
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Wärmepumpe Förder-Check – kompakt erklärt mit Rechner, Checkliste und konkreten nächsten Schritten.">
+  <title>Wärmepumpe Förder-Check – Rechner & Ratgeber</title>
+  <link rel="canonical" href="https://waermepumpe-foerder-check.vercel.app">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ist der Rechner verbindlich?","acceptedAnswer":{"@type":"Answer","text":"Nein, die Berechnung ist eine erste Orientierung auf Basis deiner Eingaben."}},{"@type":"Question","name":"Wie bekomme ich ein konkretes Angebot?","acceptedAnswer":{"@type":"Answer","text":"Nutze das Kurzformular auf der Seite. Wir senden dir eine strukturierte Erst-Einschätzung und auf Wunsch passende Kontakte."}}]}</script>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --surface:#ffffff;
+      --line:#d7ddd9;
+      --line-strong:#263231;
+      --text:#121714;
+      --muted:#4f5955;
+      --accent:#d6efe6;
+      --accent-strong:#7fb7a8;
+      --radius:20px;
+      --container:1700px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Roboto,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:#234f43;text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:var(--container);margin:0 auto;padding:0 34px}
+    .section{padding:88px 0;border-bottom:1px solid #edf1ee}
+    h1,h2,h3{margin:0 0 14px;letter-spacing:-0.02em;color:var(--text)}
+    h1{font-size:clamp(2rem,4.6vw,4.8rem);line-height:1.02}
+    h2{font-size:clamp(1.45rem,2.1vw,2.4rem)}
+    h3{font-size:clamp(1.1rem,1.4vw,1.35rem)}
+    p,li,label{color:var(--muted);line-height:1.65}
 
-:root{
-  --bg:#ffffff;
-  --surface:#ffffff;
-  --line:#1f2a2a;
-  --text:#111827;
-  --muted:#4b5563;
-  --accent:#7fb7a8;
-  --accent-strong:#5f9f8f;
-}
-*{box-sizing:border-box}
-body{
-  margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-}
-a{color:var(--accent-strong);text-decoration:none}
-a:hover{text-decoration:underline}
-.wrap{max-width:1700px;margin:0 auto;padding:56px 32px}
-.card{
-  background:var(--surface);
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:30px;
-  margin-bottom:20px;
-}
-h1,h2,h3{margin:0 0 14px;color:var(--text);letter-spacing:-0.01em}
-h1{font-size:clamp(1.9rem,2.8vw,2.8rem)}
-h2{font-size:clamp(1.35rem,1.8vw,1.85rem)}
-h3{font-size:clamp(1.12rem,1.35vw,1.35rem)}
-p,li,label{color:var(--muted);line-height:1.65}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.result{background:#f6faf8;padding:16px;border-radius:12px;border:1px solid var(--line);margin-top:12px;color:var(--text)}
-input,select,button{
-  width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);
-  background:#ffffff;color:var(--text);font-size:0.98rem
-}
-button{
-  background:var(--accent);
-  border-color:var(--line);
-  font-weight:700;
-  cursor:pointer;
-  color:#0f2520;
-}
-button:hover{background:#9fc9bd}
-.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
-.link-card{display:block;padding:14px;border:1px solid var(--line);border-radius:12px;background:#ffffff}
-small{color:#6b7280}
-@media (max-width: 860px){
-  .wrap{padding:28px 16px}
-  .grid{grid-template-columns:1fr}
-}
+    .nav{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:blur(12px);
+      background:rgba(255,255,255,.86);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .logo{font-weight:700;letter-spacing:-0.02em;color:var(--text)}
+    .logo-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--accent-strong);margin-right:8px}
+    .nav-links{display:flex;gap:26px;flex-wrap:wrap}
+    .nav-links a{font-size:.95rem;color:#34413d}
 
-</style>
-<script type='application/ld+json'>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ist der Rechner verbindlich?","acceptedAnswer":{"@type":"Answer","text":"Nein, die Berechnung ist eine erste Orientierung auf Basis deiner Eingaben."}},{"@type":"Question","name":"Wie bekomme ich ein konkretes Angebot?","acceptedAnswer":{"@type":"Answer","text":"Nutze das Kurzformular auf der Seite. Wir senden dir eine strukturierte Erst-Einschätzung und auf Wunsch passende Kontakte."}}]}</script>
-</head><body><main class='wrap'>
-<section class='card'><h1>Wärmepumpe Förder-Check</h1><p>Förder-Check, Kostenrechner und Ratgeber für Wärmepumpen in Deutschland.</p>
-<p><a href='/ratgeber/'>Zum Ratgeber-Hub mit 10 Landingpages</a></p></section>
-<section class='card'><h2>Persönliche Einschätzung in 2 Minuten</h2><p>Beantworte kurz 3 Fragen und erhalte eine unverbindliche Ersteinschätzung inkl. nächster sinnvoller Schritte.</p><p><a href='#lead-form'>👉 Jetzt kostenlose Erst-Einschätzung anfordern</a></p></section>
-<section class='card'><h2>Wärmepumpe-Kostenrechner (MVP)</h2><p>Schätze jährliche Heizkosten, Ersparnis vs. Gas und die Förderwirkung.</p>
-<div class='grid'>
-<div><label>Jährlicher Wärmebedarf (kWh)</label><input id='heat' type='number' value='16000' min='6000' max='40000'></div>
-<div><label>Jahresarbeitszahl (JAZ)</label><input id='jaz' type='number' value='3.5' min='2' max='6' step='0.1'></div>
-<div><label>Strompreis Wärmepumpe (€/kWh)</label><input id='powerPrice' type='number' value='0.28' min='0.15' max='0.7' step='0.01'></div>
-<div><label>Vergleich: Gaspreis (€/kWh)</label><input id='gasPrice' type='number' value='0.12' min='0.05' max='0.3' step='0.01'></div>
-<div><label>Investition brutto (€)</label><input id='invest' type='number' value='28000' min='10000' max='70000'></div>
-<div><label>Fördersatz (%)</label><input id='grant' type='number' value='35' min='0' max='70'></div>
-<div style='grid-column:1/-1'><button onclick='calc()'>Jetzt berechnen</button></div>
-</div><div id='out' class='result'></div></section>
-<section class='card'><h3>Schnellzugriff: Beliebte Ratgeber</h3><div class='links'><a class='link-card' href='/ratgeber/waermepumpe-kosten.html'>Wärmepumpe Kosten 2026: Anschaffung, Betrieb, Wartung</a><a class='link-card' href='/ratgeber/waermepumpe-foerderung.html'>Wärmepumpe Förderung 2026: KfW & Zuschüsse</a><a class='link-card' href='/ratgeber/waermepumpe-bestandsbau.html'>Wärmepumpe im Altbau: Geht das wirklich?</a><a class='link-card' href='/ratgeber/waermepumpe-neubau.html'>Wärmepumpe im Neubau: So planst du richtig</a><a class='link-card' href='/ratgeber/jahresarbeitszahl-verstehen.html'>Jahresarbeitszahl (JAZ) einfach erklärt</a><a class='link-card' href='/ratgeber/waermepumpe-stromverbrauch.html'>Stromverbrauch der Wärmepumpe berechnen</a><a class='link-card' href='/ratgeber/waermepumpe-heizlast.html'>Heizlast abschätzen: Basis für die richtige Dimensionierung</a><a class='link-card' href='/ratgeber/luft-vs-sole-waermepumpe.html'>Luft-Wasser vs. Sole-Wasser Wärmepumpe</a><a class='link-card' href='/ratgeber/waermepumpe-mit-pv.html'>Wärmepumpe mit PV kombinieren: Vorteile & Grenzen</a><a class='link-card' href='/ratgeber/waermepumpe-anbietervergleich.html'>Wärmepumpen Anbieter vergleichen: Checkliste</a></div></section>
-<section class='card'><h3>Kurzformular für Rückmeldung</h3><form id='lead-form'><div class='grid'><div><label>Name</label><input name='name' required placeholder='Max Mustermann'></div><div><label>E-Mail</label><input name='email' type='email' required placeholder='max@beispiel.de'></div><div><label>PLZ</label><input name='zip' required placeholder='10115'></div><div><label>Telefon (optional)</label><input name='phone' placeholder='+49 ...'></div><div style='grid-column:1/-1'><label>Dein Ziel</label><input name='goal' required placeholder='z. B. Kosten senken, Förderung prüfen, Angebot vergleichen'></div><div style='grid-column:1/-1'><button type='submit'>Kostenlose Ersteinschätzung anfordern</button></div></div><p id='lead-msg'><small>Wir melden uns i. d. R. innerhalb von 1 Werktag.</small></p></form></section><section class='card'><h3>Transparenz & Vertrauen</h3><p><small>Methodik: Vereinfachte Modellrechnung auf Basis deiner Eingaben und typischer Marktwerte. Stand: 2026-03-19. Quellenhinweis: veröffentlichte Richtwerte von Verbraucherzentralen, Branchenverbänden und Förderstellen (z. B. KfW/BAFA, je nach Thema).</small></p></section>
-</main><script>
-function calc(){
-const heat=+document.getElementById('heat').value||0;
-const jaz=+document.getElementById('jaz').value||1;
-const p=+document.getElementById('powerPrice').value||0;
-const g=+document.getElementById('gasPrice').value||0;
-const invest=+document.getElementById('invest').value||0;
-const grant=(+document.getElementById('grant').value||0)/100;
-const wpPower=heat/jaz;
-const wpCost=wpPower*p;
-const gasCost=heat*g;
-const save=gasCost-wpCost;
-const net=invest*(1-grant);
-const payback=save>0?net/save:0;
-document.getElementById('out').innerHTML=`<strong>Ergebnis:</strong><br>Strombedarf Wärmepumpe: <b>${wpPower.toFixed(0)} kWh/Jahr</b><br>Heizkosten Wärmepumpe: <b>${wpCost.toFixed(0)} €/Jahr</b><br>Heizkosten Gas (Vergleich): <b>${gasCost.toFixed(0)} €/Jahr</b><br>Jährliche Ersparnis: <b>${save.toFixed(0)} €</b><br>Netto-Invest nach Förderung: <b>${net.toFixed(0)} €</b><br>Amortisation: <b>${payback.toFixed(1)} Jahre</b><br><small>Hinweis: Vereinfachtes MVP-Modell zur ersten Orientierung.</small>`;
-}
-calc();
-</script><script>
-async function submitLead(e){
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const payload = Object.fromEntries(fd.entries());
-  const params = new URLSearchParams(location.search);
-  payload.page = location.pathname;
-  payload.source_url = location.href;
-  payload.utm_source = params.get('utm_source') || '';
-  payload.utm_medium = params.get('utm_medium') || '';
-  payload.utm_campaign = params.get('utm_campaign') || '';
-  payload.utm_term = params.get('utm_term') || '';
-  payload.utm_content = params.get('utm_content') || '';
-  const msg = document.getElementById('lead-msg');
-  try{
-    const r = await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-    if(!r.ok) throw new Error('Request failed');
-    msg.innerHTML = '<small>✅ Danke! Wir haben deine Anfrage erhalten.</small>';
-    e.target.reset();
-  }catch(err){
-    msg.innerHTML = '<small>⚠️ Konnte gerade nicht gesendet werden. Bitte später erneut versuchen.</small>';
-  }
-}
-const lf = document.getElementById('lead-form');
-if(lf) lf.addEventListener('submit', submitLead);
-</script></body></html>
+    .hero{padding:90px 0 70px;background:radial-gradient(circle at top,#eef8f3 0%,#fff 58%)}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:stretch}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.78rem;color:#32413d;margin-bottom:18px}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-strong)}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .btn{
+      border:1px solid var(--line-strong);border-radius:999px;padding:12px 18px;background:var(--text);
+      color:#fff;cursor:pointer;font-weight:600;font-size:.95rem
+    }
+    .btn.secondary{background:#fff;color:var(--text);border-color:var(--line)}
+
+    .input-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    input,select,button{width:100%;padding:12px 13px;border-radius:12px;border:1px solid var(--line);font-size:.98rem;background:#fff;color:var(--text)}
+    input:focus,select:focus{outline:none;border-color:#8ba89f;box-shadow:0 0 0 3px rgba(127,183,168,.14)}
+    .result{margin-top:14px;padding:14px;border-radius:12px;border:1px solid var(--line);background:#f7fcf9;color:var(--text)}
+
+    .trust{padding:26px 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .trust-item{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+
+    .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .kpi{font-size:1.6rem;color:var(--text);font-weight:700;letter-spacing:-0.03em}
+
+    .calc-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    .mini{font-size:.9rem;color:#5f6a66}
+
+    .guides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .link-card{display:block;padding:16px;border:1px solid var(--line);border-radius:14px;color:#26302c;background:#fff}
+    .link-card:hover{background:#f8fcfa;text-decoration:none}
+
+    .cta-band{background:linear-gradient(180deg,#fff 0%,#f1f9f4 100%)}
+    .lead-msg small{color:#5f6a66}
+
+    footer{padding:42px 0}
+    .footer-row{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#6a756f;font-size:.92rem}
+
+    @media (max-width:1080px){
+      .hero-grid,.calc-layout{grid-template-columns:1fr}
+      .compare-grid,.guides-grid{grid-template-columns:1fr 1fr}
+      .trust-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width:760px){
+      .container{padding:0 18px}
+      .section{padding:62px 0}
+      .input-grid,.compare-grid,.guides-grid,.trust-grid{grid-template-columns:1fr}
+      .nav-links{display:none}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="logo"><span class="logo-dot"></span>Wärmepumpe Förder-Check</div>
+      <div class="nav-links">
+        <a href="#vergleich">Vergleich</a>
+        <a href="#rechner">Rechner</a>
+        <a href="#ratgeber">Ratgeber</a>
+        <a href="#lead-form">Ersteinschätzung</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container hero-grid">
+      <div class="card">
+        <div class="badge"><span class="dot"></span>2026 • Förder- & Kostenorientierung</div>
+        <h1>In 3 Minuten sehen,<br>ob sich deine Wärmepumpe mit Förderung rechnet.</h1>
+        <p>Klare Erstorientierung zu Investition, Förderung und möglicher Amortisation – inklusive nächster Schritte für Angebot und Umsetzung.</p>
+        <div class="cta-row">
+          <a class="btn" href="#rechner">Jetzt Förder-Rechner starten</a>
+          <a class="btn secondary" href="#lead-form">Kostenlose Ersteinschätzung</a>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Schnell-Check: Deine Förderwirkung</h3>
+        <p class="mini">Passe die Kernwerte an und erhalte sofort eine erste Netto-Investitions- und Amortisationsschätzung.</p>
+        <div class="input-grid">
+          <div><label>Investition brutto (€)</label><input id="invest" type="number" value="28000" min="10000" max="70000"></div>
+          <div><label>Fördersatz (%)</label><input id="grant" type="number" value="35" min="0" max="70"></div>
+          <div><label>Wärmebedarf (kWh/Jahr)</label><input id="heat" type="number" value="16000" min="6000" max="40000"></div>
+          <div><label>JAZ</label><input id="jaz" type="number" value="3.5" min="2" max="6" step="0.1"></div>
+          <div><label>Strompreis (€/kWh)</label><input id="powerPrice" type="number" value="0.28" min="0.15" max="0.7" step="0.01"></div>
+          <div><label>Gaspreis (€/kWh)</label><input id="gasPrice" type="number" value="0.12" min="0.05" max="0.3" step="0.01"></div>
+          <div style="grid-column:1/-1"><button class="btn" style="border-radius:12px" onclick="calc()">Berechnen</button></div>
+        </div>
+        <div id="out" class="result"></div>
+      </div>
+    </div>
+  </header>
+
+  <section class="trust">
+    <div class="container trust-grid">
+      <div class="trust-item"><strong>Praxisnah</strong><br><span class="mini">MVP-Rechnung auf realistischen Marktwerten</span></div>
+      <div class="trust-item"><strong>Förderfokus</strong><br><span class="mini">KfW/BAFA-Logik als Erstorientierung</span></div>
+      <div class="trust-item"><strong>Transparent</strong><br><span class="mini">Alle Annahmen offen und nachvollziehbar</span></div>
+      <div class="trust-item"><strong>Lead-ready</strong><br><span class="mini">Direkt zur strukturierten Ersteinschätzung</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="vergleich">
+    <div class="container">
+      <h2>Anbieter- und Systemvergleich auf einen Blick</h2>
+      <p>Typische Setup-Profile für die erste Einordnung. Für die finale Entscheidung sind Heizlast, Gebäudestand und Vorlauftemperaturen entscheidend.</p>
+      <div class="compare-grid">
+        <article class="card">
+          <h3>Luft-Wasser (meist im Bestand)</h3>
+          <p class="mini">Geringere Einstiegskosten, schnelle Installation, gute Förderhebel.</p>
+          <p class="kpi">18.000–32.000 €</p>
+          <p>Typisch geeignet bei modernisierten Bestandsgebäuden mit optimierter Hydraulik.</p>
+        </article>
+        <article class="card" style="background:#f6fcf9">
+          <h3>Sole-Wasser (effizienzstark)</h3>
+          <p class="mini">Höhere Investition, oft stabilere JAZ im Jahresverlauf.</p>
+          <p class="kpi">28.000–45.000 €</p>
+          <p>Attraktiv bei ausreichend Grundstück/Bohrmöglichkeit und langfristigem Fokus.</p>
+        </article>
+        <article class="card">
+          <h3>Anbietervergleich</h3>
+          <p class="mini">Nicht nur Gerätepreis zählen: Service, Planung, Hydraulik, Monitoring.</p>
+          <p><a href="/ratgeber/waermepumpe-anbietervergleich.html">→ Zur Vergleichs-Checkliste</a></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="rechner">
+    <div class="container calc-layout">
+      <div class="card">
+        <h2>Kosten-, Förder- und Amortisationsrechner</h2>
+        <p>Die Berechnung nutzt deine oben eingegebenen Werte und zeigt dir den wirtschaftlichen Rahmen als erste Orientierung.</p>
+        <p class="mini">Tipp: Simuliere verschiedene Fördersätze oder Strompreise für robuste Entscheidungen.</p>
+        <button class="btn" style="max-width:280px" onclick="calc()">Rechnung aktualisieren</button>
+      </div>
+      <div class="card" style="background:#f9fcfa">
+        <h3>Methodik</h3>
+        <ul>
+          <li>Strombedarf = Wärmebedarf / JAZ</li>
+          <li>Vergleichskosten auf Basis Gaspreis</li>
+          <li>Nettoinvestition nach Fördersatz</li>
+          <li>Amortisation = Nettoinvestition / jährliche Ersparnis</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ratgeber">
+    <div class="container">
+      <h2>Ratgeber-Hub + Featured Guides</h2>
+      <p>Vertiefe genau die Themen, die für deine Situation relevant sind.</p>
+      <p><a href="/ratgeber/">Zum vollständigen Ratgeber-Hub</a></p>
+      <div class="guides-grid">
+        <a class="link-card" href="/ratgeber/waermepumpe-kosten.html">Wärmepumpe Kosten 2026: Anschaffung, Betrieb, Wartung</a>
+        <a class="link-card" href="/ratgeber/waermepumpe-foerderung.html">Wärmepumpe Förderung 2026: KfW & Zuschüsse</a>
+        <a class="link-card" href="/ratgeber/waermepumpe-bestandsbau.html">Wärmepumpe im Altbau: Geht das wirklich?</a>
+        <a class="link-card" href="/ratgeber/waermepumpe-neubau.html">Wärmepumpe im Neubau: So planst du richtig</a>
+        <a class="link-card" href="/ratgeber/jahresarbeitszahl-verstehen.html">Jahresarbeitszahl (JAZ) einfach erklärt</a>
+        <a class="link-card" href="/ratgeber/waermepumpe-stromverbrauch.html">Stromverbrauch der Wärmepumpe berechnen</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-band">
+    <div class="container">
+      <div class="card">
+        <h2>Hol dir jetzt deine kostenlose Ersteinschätzung</h2>
+        <p>Wir melden uns mit einer klaren, priorisierten Einschätzung und passenden nächsten Schritten – in der Regel innerhalb von 1 Werktag.</p>
+        <form id="lead-form">
+          <div class="input-grid">
+            <div><label>Name</label><input name="name" required placeholder="Max Mustermann"></div>
+            <div><label>E-Mail</label><input name="email" type="email" required placeholder="max@beispiel.de"></div>
+            <div><label>PLZ</label><input name="zip" required placeholder="10115"></div>
+            <div><label>Telefon (optional)</label><input name="phone" placeholder="+49 ..."></div>
+            <div style="grid-column:1/-1"><label>Dein Ziel</label><input name="goal" required placeholder="z. B. Förderung prüfen, Kosten senken, Anbieter vergleichen"></div>
+            <div style="grid-column:1/-1"><button class="btn" type="submit" style="border-radius:12px">Kostenlose Ersteinschätzung anfordern</button></div>
+          </div>
+        </form>
+        <p id="lead-msg" class="lead-msg"><small>Wir melden uns i. d. R. innerhalb von 1 Werktag.</small></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-row">
+      <span>© 2026 Wärmepumpe Förder-Check</span>
+      <span>Methodik: vereinfachtes Modell zur Erstorientierung</span>
+      <span><a href="/ratgeber/waermepumpe-heizlast.html">Heizlast verstehen</a></span>
+    </div>
+  </footer>
+
+  <script>
+    function calc(){
+      const heat=+document.getElementById('heat').value||0;
+      const jaz=+document.getElementById('jaz').value||1;
+      const p=+document.getElementById('powerPrice').value||0;
+      const g=+document.getElementById('gasPrice').value||0;
+      const invest=+document.getElementById('invest').value||0;
+      const grant=(+document.getElementById('grant').value||0)/100;
+      const wpPower=heat/jaz;
+      const wpCost=wpPower*p;
+      const gasCost=heat*g;
+      const save=gasCost-wpCost;
+      const net=invest*(1-grant);
+      const payback=save>0?net/save:0;
+      document.getElementById('out').innerHTML=`<strong>Ergebnis:</strong><br>Strombedarf Wärmepumpe: <b>${wpPower.toFixed(0)} kWh/Jahr</b><br>Heizkosten Wärmepumpe: <b>${wpCost.toFixed(0)} €/Jahr</b><br>Heizkosten Gas (Vergleich): <b>${gasCost.toFixed(0)} €/Jahr</b><br>Jährliche Ersparnis: <b>${save.toFixed(0)} €</b><br>Netto-Invest nach Förderung: <b>${net.toFixed(0)} €</b><br>Amortisation: <b>${payback.toFixed(1)} Jahre</b><br><small>Hinweis: Vereinfachtes MVP-Modell zur ersten Orientierung.</small>`;
+    }
+    calc();
+
+    async function submitLead(e){
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const payload = Object.fromEntries(fd.entries());
+      const params = new URLSearchParams(location.search);
+      payload.page = location.pathname;
+      payload.source_url = location.href;
+      payload.utm_source = params.get('utm_source') || '';
+      payload.utm_medium = params.get('utm_medium') || '';
+      payload.utm_campaign = params.get('utm_campaign') || '';
+      payload.utm_term = params.get('utm_term') || '';
+      payload.utm_content = params.get('utm_content') || '';
+      const msg = document.getElementById('lead-msg');
+      try{
+        const r = await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+        if(!r.ok) throw new Error('Request failed');
+        msg.innerHTML = '<small>✅ Danke! Wir haben deine Anfrage erhalten.</small>';
+        e.target.reset();
+      }catch(err){
+        msg.innerHTML = '<small>⚠️ Konnte gerade nicht gesendet werden. Bitte später erneut versuchen.</small>';
+      }
+    }
+    const lf = document.getElementById('lead-form');
+    if(lf) lf.addEventListener('submit', submitLead);
+  </script>
+</body>
+</html>
