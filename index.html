@@ -1,5 +1,7 @@
 <!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<meta name='description' content='Wärmepumpe Förder-Check – kompakt erklärt mit Rechner, Checkliste und konkreten nächsten Schritten.'>
 <title>Wärmepumpe Förder-Check – Rechner & Ratgeber</title>
+<link rel='canonical' href='https://waermepumpe-foerder-check.vercel.app'>
 <style>
 :root{--bg:#0d1117;--card:#151b24;--line:#313b4f;--text:#f5f8ff;--muted:#bec7da;--accent:#78d6a4}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(180deg,#0a1018,#16202d);color:var(--text)}
@@ -12,9 +14,11 @@ button{background:#1f7a55;border-color:#2ba06f;font-weight:700;cursor:pointer}.l
 .link-card{display:block;padding:12px;border:1px solid var(--line);border-radius:10px;background:#101923}
 small{color:#9fb1cb}
 </style>
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ist der Rechner verbindlich?","acceptedAnswer":{"@type":"Answer","text":"Nein, die Berechnung ist eine erste Orientierung auf Basis deiner Eingaben."}},{"@type":"Question","name":"Wie bekomme ich ein konkretes Angebot?","acceptedAnswer":{"@type":"Answer","text":"Nutze das Kurzformular auf der Seite. Wir senden dir eine strukturierte Erst-Einschätzung und auf Wunsch passende Kontakte."}}]}</script>
 </head><body><main class='wrap'>
 <section class='card'><h1>Wärmepumpe Förder-Check</h1><p>Förder-Check, Kostenrechner und Ratgeber für Wärmepumpen in Deutschland.</p>
 <p><a href='/ratgeber/'>Zum Ratgeber-Hub mit 10 Landingpages</a></p></section>
+<section class='card'><h2>Persönliche Einschätzung in 2 Minuten</h2><p>Beantworte kurz 3 Fragen und erhalte eine unverbindliche Ersteinschätzung inkl. nächster sinnvoller Schritte.</p><p><a href='#lead-form'>👉 Jetzt kostenlose Erst-Einschätzung anfordern</a></p></section>
 <section class='card'><h2>Wärmepumpe-Kostenrechner (MVP)</h2><p>Schätze jährliche Heizkosten, Ersparnis vs. Gas und die Förderwirkung.</p>
 <div class='grid'>
 <div><label>Jährlicher Wärmebedarf (kWh)</label><input id='heat' type='number' value='16000' min='6000' max='40000'></div>
@@ -26,6 +30,7 @@ small{color:#9fb1cb}
 <div style='grid-column:1/-1'><button onclick='calc()'>Jetzt berechnen</button></div>
 </div><div id='out' class='result'></div></section>
 <section class='card'><h3>Schnellzugriff: Beliebte Ratgeber</h3><div class='links'><a class='link-card' href='/ratgeber/waermepumpe-kosten.html'>Wärmepumpe Kosten 2026: Anschaffung, Betrieb, Wartung</a><a class='link-card' href='/ratgeber/waermepumpe-foerderung.html'>Wärmepumpe Förderung 2026: KfW & Zuschüsse</a><a class='link-card' href='/ratgeber/waermepumpe-bestandsbau.html'>Wärmepumpe im Altbau: Geht das wirklich?</a><a class='link-card' href='/ratgeber/waermepumpe-neubau.html'>Wärmepumpe im Neubau: So planst du richtig</a><a class='link-card' href='/ratgeber/jahresarbeitszahl-verstehen.html'>Jahresarbeitszahl (JAZ) einfach erklärt</a><a class='link-card' href='/ratgeber/waermepumpe-stromverbrauch.html'>Stromverbrauch der Wärmepumpe berechnen</a><a class='link-card' href='/ratgeber/waermepumpe-heizlast.html'>Heizlast abschätzen: Basis für die richtige Dimensionierung</a><a class='link-card' href='/ratgeber/luft-vs-sole-waermepumpe.html'>Luft-Wasser vs. Sole-Wasser Wärmepumpe</a><a class='link-card' href='/ratgeber/waermepumpe-mit-pv.html'>Wärmepumpe mit PV kombinieren: Vorteile & Grenzen</a><a class='link-card' href='/ratgeber/waermepumpe-anbietervergleich.html'>Wärmepumpen Anbieter vergleichen: Checkliste</a></div></section>
+<section class='card'><h3>Kurzformular für Rückmeldung</h3><form id='lead-form'><div class='grid'><div><label>Name</label><input name='name' required placeholder='Max Mustermann'></div><div><label>E-Mail</label><input name='email' type='email' required placeholder='max@beispiel.de'></div><div><label>PLZ</label><input name='zip' required placeholder='10115'></div><div><label>Telefon (optional)</label><input name='phone' placeholder='+49 ...'></div><div style='grid-column:1/-1'><label>Dein Ziel</label><input name='goal' required placeholder='z. B. Kosten senken, Förderung prüfen, Angebot vergleichen'></div><div style='grid-column:1/-1'><button type='submit'>Kostenlose Ersteinschätzung anfordern</button></div></div><p id='lead-msg'><small>Wir melden uns i. d. R. innerhalb von 1 Werktag.</small></p></form></section><section class='card'><h3>Transparenz & Vertrauen</h3><p><small>Methodik: Vereinfachte Modellrechnung auf Basis deiner Eingaben und typischer Marktwerte. Stand: 2026-03-19. Quellenhinweis: veröffentlichte Richtwerte von Verbraucherzentralen, Branchenverbänden und Förderstellen (z. B. KfW/BAFA, je nach Thema).</small></p></section>
 </main><script>
 function calc(){
 const heat=+document.getElementById('heat').value||0;
@@ -43,4 +48,22 @@ const payback=save>0?net/save:0;
 document.getElementById('out').innerHTML=`<strong>Ergebnis:</strong><br>Strombedarf Wärmepumpe: <b>${wpPower.toFixed(0)} kWh/Jahr</b><br>Heizkosten Wärmepumpe: <b>${wpCost.toFixed(0)} €/Jahr</b><br>Heizkosten Gas (Vergleich): <b>${gasCost.toFixed(0)} €/Jahr</b><br>Jährliche Ersparnis: <b>${save.toFixed(0)} €</b><br>Netto-Invest nach Förderung: <b>${net.toFixed(0)} €</b><br>Amortisation: <b>${payback.toFixed(1)} Jahre</b><br><small>Hinweis: Vereinfachtes MVP-Modell zur ersten Orientierung.</small>`;
 }
 calc();
+</script><script>
+async function submitLead(e){
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  const payload = Object.fromEntries(fd.entries());
+  payload.page = location.pathname;
+  const msg = document.getElementById('lead-msg');
+  try{
+    const r = await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!r.ok) throw new Error('Request failed');
+    msg.innerHTML = '<small>✅ Danke! Wir haben deine Anfrage erhalten.</small>';
+    e.target.reset();
+  }catch(err){
+    msg.innerHTML = '<small>⚠️ Konnte gerade nicht gesendet werden. Bitte später erneut versuchen.</small>';
+  }
+}
+const lf = document.getElementById('lead-form');
+if(lf) lf.addEventListener('submit', submitLead);
 </script></body></html>
