@@ -2,16 +2,60 @@
 <meta name='description' content='Wärmepumpe im Altbau: Geht das wirklich? – kompakt erklärt mit Rechner, Checkliste und konkreten nächsten Schritten.'><title>Wärmepumpe im Altbau: Geht das wirklich?</title>
 <link rel='canonical' href='https://waermepumpe-foerder-check.vercel.app/ratgeber/waermepumpe-bestandsbau.html'>
 <style>
-:root{--bg:#0d1117;--card:#151b24;--line:#313b4f;--text:#f5f8ff;--muted:#bec7da;--accent:#78d6a4}
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(180deg,#0a1018,#16202d);color:var(--text)}
-a{color:#8de5b8;text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:980px;margin:0 auto;padding:28px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
-h1,h2,h3{margin:0 0 10px}p,li,label{color:var(--muted);line-height:1.5}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.result{background:#111923;padding:14px;border-radius:10px;border:1px solid var(--line);margin-top:10px}
-input,select,button{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#101923;color:var(--text)}
-button{background:#1f7a55;border-color:#2ba06f;font-weight:700;cursor:pointer}.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-.link-card{display:block;padding:12px;border:1px solid var(--line);border-radius:10px;background:#101923}
-small{color:#9fb1cb}
+
+:root{
+  --bg:#ffffff;
+  --surface:#ffffff;
+  --line:#1f2a2a;
+  --text:#111827;
+  --muted:#4b5563;
+  --accent:#7fb7a8;
+  --accent-strong:#5f9f8f;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+a{color:var(--accent-strong);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1700px;margin:0 auto;padding:56px 32px}
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:30px;
+  margin-bottom:20px;
+}
+h1,h2,h3{margin:0 0 14px;color:var(--text);letter-spacing:-0.01em}
+h1{font-size:clamp(1.9rem,2.8vw,2.8rem)}
+h2{font-size:clamp(1.35rem,1.8vw,1.85rem)}
+h3{font-size:clamp(1.12rem,1.35vw,1.35rem)}
+p,li,label{color:var(--muted);line-height:1.65}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.result{background:#f6faf8;padding:16px;border-radius:12px;border:1px solid var(--line);margin-top:12px;color:var(--text)}
+input,select,button{
+  width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);
+  background:#ffffff;color:var(--text);font-size:0.98rem
+}
+button{
+  background:var(--accent);
+  border-color:var(--line);
+  font-weight:700;
+  cursor:pointer;
+  color:#0f2520;
+}
+button:hover{background:#9fc9bd}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.link-card{display:block;padding:14px;border:1px solid var(--line);border-radius:12px;background:#ffffff}
+small{color:#6b7280}
+@media (max-width: 860px){
+  .wrap{padding:28px 16px}
+  .grid{grid-template-columns:1fr}
+}
+
 </style>
 <script type='application/ld+json'>{"@context":"https://schema.org","@type":"Article","headline":"Wärmepumpe im Altbau: Geht das wirklich?","description":"Wärmepumpe im Altbau: Geht das wirklich? – kompakt erklärt mit Rechner, Checkliste und konkreten nächsten Schritten.","author":{"@type":"Organization","name":"Wärmepumpe Förder-Check"},"dateModified":"2026-03-19","mainEntityOfPage":"https://waermepumpe-foerder-check.vercel.app/ratgeber/waermepumpe-bestandsbau.html"}</script>
 </head><body><main class='wrap'><article class='card'><h1>Wärmepumpe im Altbau: Geht das wirklich?</h1><p>Diese Landingpage ist Teil des Phase-1-MVP und bietet eine fokussierte Einführung ins Thema <strong>Wärmepumpe im Altbau: Geht das wirklich?</strong>.</p><h2>Kurz zusammengefasst</h2><ul><li>Grundlagen verständlich erklärt</li><li>Wichtige Kennzahlen für Entscheidungen</li><li>Verlinkung zu passenden Folgeseiten im Cluster</li></ul><p>Für eine schnelle Kostenabschätzung nutze den <a href='/'>Wärmepumpen-Rechner auf der Startseite</a>.</p></article><nav class='card'><h3>Weiterlesen</h3><p><a href='/ratgeber/waermepumpe-foerderung.html'>← Vorherige Seite</a> · <a href='/ratgeber/waermepumpe-neubau.html'>Nächste Seite →</a></p><p><a href='/'>Zur Startseite</a> · <a href='/ratgeber/'>Alle 10 Ratgeberseiten im Hub</a></p></nav><section class='card'><h3>Kurzformular für Rückmeldung</h3><form id='lead-form'><div class='grid'><div><label>Name</label><input name='name' required placeholder='Max Mustermann'></div><div><label>E-Mail</label><input name='email' type='email' required placeholder='max@beispiel.de'></div><div><label>PLZ</label><input name='zip' required placeholder='10115'></div><div><label>Telefon (optional)</label><input name='phone' placeholder='+49 ...'></div><div style='grid-column:1/-1'><label>Dein Ziel</label><input name='goal' required placeholder='z. B. Kosten senken, Förderung prüfen, Angebot vergleichen'></div><div style='grid-column:1/-1'><button type='submit'>Kostenlose Ersteinschätzung anfordern</button></div></div><p id='lead-msg'><small>Wir melden uns i. d. R. innerhalb von 1 Werktag.</small></p></form></section><section class='card'><h3>Transparenz & Vertrauen</h3><p><small>Methodik: Vereinfachte Modellrechnung auf Basis deiner Eingaben und typischer Marktwerte. Stand: 2026-03-19. Quellenhinweis: veröffentlichte Richtwerte von Verbraucherzentralen, Branchenverbänden und Förderstellen (z. B. KfW/BAFA, je nach Thema).</small></p></section>

@@ -3,16 +3,60 @@
 <title>Wärmepumpe Förder-Check – Rechner & Ratgeber</title>
 <link rel='canonical' href='https://waermepumpe-foerder-check.vercel.app'>
 <style>
-:root{--bg:#0d1117;--card:#151b24;--line:#313b4f;--text:#f5f8ff;--muted:#bec7da;--accent:#78d6a4}
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(180deg,#0a1018,#16202d);color:var(--text)}
-a{color:#8de5b8;text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:980px;margin:0 auto;padding:28px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
-h1,h2,h3{margin:0 0 10px}p,li,label{color:var(--muted);line-height:1.5}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.result{background:#111923;padding:14px;border-radius:10px;border:1px solid var(--line);margin-top:10px}
-input,select,button{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#101923;color:var(--text)}
-button{background:#1f7a55;border-color:#2ba06f;font-weight:700;cursor:pointer}.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
-.link-card{display:block;padding:12px;border:1px solid var(--line);border-radius:10px;background:#101923}
-small{color:#9fb1cb}
+
+:root{
+  --bg:#ffffff;
+  --surface:#ffffff;
+  --line:#1f2a2a;
+  --text:#111827;
+  --muted:#4b5563;
+  --accent:#7fb7a8;
+  --accent-strong:#5f9f8f;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+a{color:var(--accent-strong);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1700px;margin:0 auto;padding:56px 32px}
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:30px;
+  margin-bottom:20px;
+}
+h1,h2,h3{margin:0 0 14px;color:var(--text);letter-spacing:-0.01em}
+h1{font-size:clamp(1.9rem,2.8vw,2.8rem)}
+h2{font-size:clamp(1.35rem,1.8vw,1.85rem)}
+h3{font-size:clamp(1.12rem,1.35vw,1.35rem)}
+p,li,label{color:var(--muted);line-height:1.65}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.result{background:#f6faf8;padding:16px;border-radius:12px;border:1px solid var(--line);margin-top:12px;color:var(--text)}
+input,select,button{
+  width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);
+  background:#ffffff;color:var(--text);font-size:0.98rem
+}
+button{
+  background:var(--accent);
+  border-color:var(--line);
+  font-weight:700;
+  cursor:pointer;
+  color:#0f2520;
+}
+button:hover{background:#9fc9bd}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.link-card{display:block;padding:14px;border:1px solid var(--line);border-radius:12px;background:#ffffff}
+small{color:#6b7280}
+@media (max-width: 860px){
+  .wrap{padding:28px 16px}
+  .grid{grid-template-columns:1fr}
+}
+
 </style>
 <script type='application/ld+json'>{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Ist der Rechner verbindlich?","acceptedAnswer":{"@type":"Answer","text":"Nein, die Berechnung ist eine erste Orientierung auf Basis deiner Eingaben."}},{"@type":"Question","name":"Wie bekomme ich ein konkretes Angebot?","acceptedAnswer":{"@type":"Answer","text":"Nutze das Kurzformular auf der Seite. Wir senden dir eine strukturierte Erst-Einschätzung und auf Wunsch passende Kontakte."}}]}</script>
 </head><body><main class='wrap'>
