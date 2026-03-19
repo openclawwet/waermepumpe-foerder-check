@@ -97,7 +97,14 @@ async function submitLead(e){
   e.preventDefault();
   const fd = new FormData(e.target);
   const payload = Object.fromEntries(fd.entries());
+  const params = new URLSearchParams(location.search);
   payload.page = location.pathname;
+  payload.source_url = location.href;
+  payload.utm_source = params.get('utm_source') || '';
+  payload.utm_medium = params.get('utm_medium') || '';
+  payload.utm_campaign = params.get('utm_campaign') || '';
+  payload.utm_term = params.get('utm_term') || '';
+  payload.utm_content = params.get('utm_content') || '';
   const msg = document.getElementById('lead-msg');
   try{
     const r = await fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
