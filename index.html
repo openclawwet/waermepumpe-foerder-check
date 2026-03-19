@@ -1,4 +1,46 @@
 <!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>Wärmepumpe Förder-Check</title>
-<style>body{margin:0;background:#000;color:#fff;font-family:-apple-system,Segoe UI,Roboto,sans-serif}.wrap{max-width:860px;margin:8vh auto;padding:24px}.card{background:#111;border:1px solid #2a2a2a;border-radius:16px;padding:24px}h1{margin:0 0 10px}p{color:#bcbcbc}</style>
-</head><body><div class='wrap'><div class='card'><h1>Wärmepumpe Förder-Check</h1><p>Förder-Checker + Kostenrechner + Anbietervergleich.</p><p>Status: MVP setup live.</p></div></div></body></html>
+<title>Wärmepumpe Förder-Check – Rechner & Ratgeber</title>
+<style>
+:root{--bg:#0d1117;--card:#151b24;--line:#313b4f;--text:#f5f8ff;--muted:#bec7da;--accent:#78d6a4}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:linear-gradient(180deg,#0a1018,#16202d);color:var(--text)}
+a{color:#8de5b8;text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:980px;margin:0 auto;padding:28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+h1,h2,h3{margin:0 0 10px}p,li,label{color:var(--muted);line-height:1.5}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.result{background:#111923;padding:14px;border-radius:10px;border:1px solid var(--line);margin-top:10px}
+input,select,button{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#101923;color:var(--text)}
+button{background:#1f7a55;border-color:#2ba06f;font-weight:700;cursor:pointer}.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.link-card{display:block;padding:12px;border:1px solid var(--line);border-radius:10px;background:#101923}
+small{color:#9fb1cb}
+</style>
+</head><body><main class='wrap'>
+<section class='card'><h1>Wärmepumpe Förder-Check</h1><p>Förder-Check, Kostenrechner und Ratgeber für Wärmepumpen in Deutschland.</p>
+<p><a href='/ratgeber/'>Zum Ratgeber-Hub mit 10 Landingpages</a></p></section>
+<section class='card'><h2>Wärmepumpe-Kostenrechner (MVP)</h2><p>Schätze jährliche Heizkosten, Ersparnis vs. Gas und die Förderwirkung.</p>
+<div class='grid'>
+<div><label>Jährlicher Wärmebedarf (kWh)</label><input id='heat' type='number' value='16000' min='6000' max='40000'></div>
+<div><label>Jahresarbeitszahl (JAZ)</label><input id='jaz' type='number' value='3.5' min='2' max='6' step='0.1'></div>
+<div><label>Strompreis Wärmepumpe (€/kWh)</label><input id='powerPrice' type='number' value='0.28' min='0.15' max='0.7' step='0.01'></div>
+<div><label>Vergleich: Gaspreis (€/kWh)</label><input id='gasPrice' type='number' value='0.12' min='0.05' max='0.3' step='0.01'></div>
+<div><label>Investition brutto (€)</label><input id='invest' type='number' value='28000' min='10000' max='70000'></div>
+<div><label>Fördersatz (%)</label><input id='grant' type='number' value='35' min='0' max='70'></div>
+<div style='grid-column:1/-1'><button onclick='calc()'>Jetzt berechnen</button></div>
+</div><div id='out' class='result'></div></section>
+<section class='card'><h3>Schnellzugriff: Beliebte Ratgeber</h3><div class='links'><a class='link-card' href='/ratgeber/waermepumpe-kosten.html'>Wärmepumpe Kosten 2026: Anschaffung, Betrieb, Wartung</a><a class='link-card' href='/ratgeber/waermepumpe-foerderung.html'>Wärmepumpe Förderung 2026: KfW & Zuschüsse</a><a class='link-card' href='/ratgeber/waermepumpe-bestandsbau.html'>Wärmepumpe im Altbau: Geht das wirklich?</a><a class='link-card' href='/ratgeber/waermepumpe-neubau.html'>Wärmepumpe im Neubau: So planst du richtig</a><a class='link-card' href='/ratgeber/jahresarbeitszahl-verstehen.html'>Jahresarbeitszahl (JAZ) einfach erklärt</a><a class='link-card' href='/ratgeber/waermepumpe-stromverbrauch.html'>Stromverbrauch der Wärmepumpe berechnen</a><a class='link-card' href='/ratgeber/waermepumpe-heizlast.html'>Heizlast abschätzen: Basis für die richtige Dimensionierung</a><a class='link-card' href='/ratgeber/luft-vs-sole-waermepumpe.html'>Luft-Wasser vs. Sole-Wasser Wärmepumpe</a><a class='link-card' href='/ratgeber/waermepumpe-mit-pv.html'>Wärmepumpe mit PV kombinieren: Vorteile & Grenzen</a><a class='link-card' href='/ratgeber/waermepumpe-anbietervergleich.html'>Wärmepumpen Anbieter vergleichen: Checkliste</a></div></section>
+</main><script>
+function calc(){
+const heat=+document.getElementById('heat').value||0;
+const jaz=+document.getElementById('jaz').value||1;
+const p=+document.getElementById('powerPrice').value||0;
+const g=+document.getElementById('gasPrice').value||0;
+const invest=+document.getElementById('invest').value||0;
+const grant=(+document.getElementById('grant').value||0)/100;
+const wpPower=heat/jaz;
+const wpCost=wpPower*p;
+const gasCost=heat*g;
+const save=gasCost-wpCost;
+const net=invest*(1-grant);
+const payback=save>0?net/save:0;
+document.getElementById('out').innerHTML=`<strong>Ergebnis:</strong><br>Strombedarf Wärmepumpe: <b>${wpPower.toFixed(0)} kWh/Jahr</b><br>Heizkosten Wärmepumpe: <b>${wpCost.toFixed(0)} €/Jahr</b><br>Heizkosten Gas (Vergleich): <b>${gasCost.toFixed(0)} €/Jahr</b><br>Jährliche Ersparnis: <b>${save.toFixed(0)} €</b><br>Netto-Invest nach Förderung: <b>${net.toFixed(0)} €</b><br>Amortisation: <b>${payback.toFixed(1)} Jahre</b><br><small>Hinweis: Vereinfachtes MVP-Modell zur ersten Orientierung.</small>`;
+}
+calc();
+</script></body></html>
