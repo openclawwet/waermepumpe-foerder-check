@@ -19,6 +19,9 @@
       --accent-strong:#7fb7a8;
       --radius:20px;
       --container:1700px;
+      --space-section:96px;
+      --space-tight:62px;
+      --shadow-soft:0 18px 52px rgba(15,24,21,.07);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -32,7 +35,7 @@
     a{color:#234f43;text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:var(--container);margin:0 auto;padding:0 34px}
-    .section{padding:88px 0;border-bottom:1px solid #edf1ee}
+    .section{padding:var(--space-section) 0;border-bottom:1px solid #edf1ee}
     h1,h2,h3{margin:0 0 14px;letter-spacing:-0.02em;color:var(--text)}
     h1{font-size:clamp(2rem,4.6vw,4.8rem);line-height:1.02}
     h2{font-size:clamp(1.45rem,2.1vw,2.4rem)}
@@ -51,12 +54,12 @@
     .nav-links{display:flex;gap:26px;flex-wrap:wrap}
     .nav-links a{font-size:.95rem;color:#34413d}
 
-    .hero{padding:90px 0 70px;background:radial-gradient(circle at top,#eef8f3 0%,#fff 58%)}
-    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:stretch}
-    .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
-    .badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.78rem;color:#32413d;margin-bottom:18px}
+    .hero{padding:98px 0 76px;background:radial-gradient(circle at top,#eef8f3 0%,#fff 60%)}
+    .hero-grid{display:grid;grid-template-columns:1.18fr .88fr;gap:34px;align-items:stretch}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:0 8px 24px rgba(17,28,24,.035)}
+    .badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;font-size:.78rem;color:#32413d;margin-bottom:20px}
     .dot{width:8px;height:8px;border-radius:50%;background:var(--accent-strong)}
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
     .btn{
       border:1px solid var(--line-strong);border-radius:999px;padding:12px 18px;background:var(--text);
       color:#fff;cursor:pointer;font-weight:600;font-size:.95rem
@@ -68,12 +71,16 @@
     input:focus,select:focus{outline:none;border-color:#8ba89f;box-shadow:0 0 0 3px rgba(127,183,168,.14)}
     .result{margin-top:14px;padding:14px;border-radius:12px;border:1px solid var(--line);background:#f7fcf9;color:var(--text)}
 
-    .trust{padding:26px 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .trust{padding:24px 0;background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .trust-item{padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}
+    .trust-item{padding:14px 15px;border:1px solid var(--line);border-radius:14px;background:#fff}
 
-    .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .kpi{font-size:1.6rem;color:var(--text);font-weight:700;letter-spacing:-0.03em}
+    .compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .compare-card{display:flex;flex-direction:column;gap:12px}
+    .compare-media{height:118px;border-radius:14px;border:1px solid #d8e9e2;background:linear-gradient(160deg,#eef8f3 0%,#ffffff 100%)}
+    .compare-meta{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+    .compare-meta .mini{margin:0}
+    .kpi{font-size:1.75rem;color:var(--text);font-weight:700;letter-spacing:-0.03em;margin:0}
 
     .calc-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
     .mini{font-size:.9rem;color:#5f6a66}
@@ -82,10 +89,10 @@
     .link-card{display:block;padding:16px;border:1px solid var(--line);border-radius:14px;color:#26302c;background:#fff}
     .link-card:hover{background:#f8fcfa;text-decoration:none}
 
-    .cta-band{background:linear-gradient(180deg,#fff 0%,#f1f9f4 100%)}
+    .cta-band{background:linear-gradient(180deg,#fff 0%,#f3faf6 100%)}
     .lead-msg small{color:#5f6a66}
 
-    footer{padding:42px 0}
+    footer{padding:36px 0 54px;border-top:1px solid var(--line)}
     .footer-row{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;color:#6a756f;font-size:.92rem}
 
     @media (max-width:1080px){
@@ -95,7 +102,7 @@
     }
     @media (max-width:760px){
       .container{padding:0 18px}
-      .section{padding:62px 0}
+      .section{padding:74px 0}
       .input-grid,.compare-grid,.guides-grid,.trust-grid{grid-template-columns:1fr}
       .nav-links{display:none}
     }
@@ -119,13 +126,14 @@
       <div class="card">
         <div class="badge"><span class="dot"></span>2026 • Förder- & Kostenorientierung</div>
         <h1>In 3 Minuten sehen,<br>ob sich deine Wärmepumpe mit Förderung rechnet.</h1>
-        <p>Klare Erstorientierung zu Investition, Förderung und möglicher Amortisation – inklusive nächster Schritte für Angebot und Umsetzung.</p>
+        <p>Klare Erstorientierung zu Investition, Förderung und möglicher Amortisation.</p>
+        <p class="mini" style="margin-top:10px">Inklusive nächster Schritte für Angebot und Umsetzung – kompakt und ohne Umwege.</p>
         <div class="cta-row">
           <a class="btn" href="#rechner">Jetzt Förder-Rechner starten</a>
           <a class="btn secondary" href="#lead-form">Kostenlose Ersteinschätzung</a>
         </div>
       </div>
-      <div class="card">
+      <div class="card" style="border-color:#bccbc5;box-shadow:var(--shadow-soft)">
         <h3>Schnell-Check: Deine Förderwirkung</h3>
         <p class="mini">Passe die Kernwerte an und erhalte sofort eine erste Netto-Investitions- und Amortisationsschätzung.</p>
         <div class="input-grid">
@@ -156,19 +164,20 @@
       <h2>Anbieter- und Systemvergleich auf einen Blick</h2>
       <p>Typische Setup-Profile für die erste Einordnung. Für die finale Entscheidung sind Heizlast, Gebäudestand und Vorlauftemperaturen entscheidend.</p>
       <div class="compare-grid">
-        <article class="card">
-          <h3>Luft-Wasser (meist im Bestand)</h3>
+        <article class="card compare-card">
+          <div class="compare-media"></div>
+          <div class="compare-meta"><h3>Luft-Wasser (meist im Bestand)</h3><p class="kpi">18.000–32.000 €</p></div>
           <p class="mini">Geringere Einstiegskosten, schnelle Installation, gute Förderhebel.</p>
-          <p class="kpi">18.000–32.000 €</p>
           <p>Typisch geeignet bei modernisierten Bestandsgebäuden mit optimierter Hydraulik.</p>
         </article>
-        <article class="card" style="background:#f6fcf9">
-          <h3>Sole-Wasser (effizienzstark)</h3>
+        <article class="card compare-card" style="background:#f6fcf9">
+          <div class="compare-media"></div>
+          <div class="compare-meta"><h3>Sole-Wasser (effizienzstark)</h3><p class="kpi">28.000–45.000 €</p></div>
           <p class="mini">Höhere Investition, oft stabilere JAZ im Jahresverlauf.</p>
-          <p class="kpi">28.000–45.000 €</p>
           <p>Attraktiv bei ausreichend Grundstück/Bohrmöglichkeit und langfristigem Fokus.</p>
         </article>
-        <article class="card">
+        <article class="card compare-card">
+          <div class="compare-media"></div>
           <h3>Anbietervergleich</h3>
           <p class="mini">Nicht nur Gerätepreis zählen: Service, Planung, Hydraulik, Monitoring.</p>
           <p><a href="/ratgeber/waermepumpe-anbietervergleich.html">→ Zur Vergleichs-Checkliste</a></p>
@@ -215,7 +224,7 @@
 
   <section class="section cta-band">
     <div class="container">
-      <div class="card">
+      <div class="card" style="border-color:#c8d7d1">
         <h2>Hol dir jetzt deine kostenlose Ersteinschätzung</h2>
         <p>Wir melden uns mit einer klaren, priorisierten Einschätzung und passenden nächsten Schritten – in der Regel innerhalb von 1 Werktag.</p>
         <form id="lead-form">
@@ -237,6 +246,7 @@
     <div class="container footer-row">
       <span>© 2026 Wärmepumpe Förder-Check</span>
       <span>Methodik: vereinfachtes Modell zur Erstorientierung</span>
+      <span style="opacity:.86">Klar. Ruhig. Entscheidungsorientiert.</span>
       <span><a href="/ratgeber/waermepumpe-heizlast.html">Heizlast verstehen</a></span>
     </div>
   </footer>
